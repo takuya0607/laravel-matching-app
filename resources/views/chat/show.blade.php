@@ -6,7 +6,13 @@
   <header class="header">
   <a href="{{route('matching')}}" class="linkToMatching"></a>
     <div class="chatPartner">
-      <div class="chatPartner_img"><img src="/storage/images/{{$chat_room_user -> img_name}}"></div>
+      <div class="chatPartner_img">
+        @isset($user->img_name)
+          <img src="/storage/images/{{ $user->img_name}}" alt onerror="this.onerror = null; this.src='';">
+        @else
+          <img src="/images/avatar-default.svg" class="rounded-circle">
+        @endisset
+      </div>
       <div class="chatPartner_name">{{ $chat_room_user -> name }}</div>
     </div>
   </header>
@@ -44,4 +50,3 @@ var chat_room_user_name = "{{ $chat_room_user_name }}";
 </script>
 
 @endsection
-

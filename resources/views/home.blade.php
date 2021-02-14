@@ -6,11 +6,11 @@
   <nav class="nav">
     <ul>
       <li class="personIcon">
-        <a href="/users/show/{{Auth::id()}}"><i class="fas fa-user fa-2x"></i></a></li>
-      <li class="appIcon"><a href="{{route('home')}}"><img src="/images/techpit-match-icon.png"></a></li>
+        <a href="/users/show/{{Auth::id()}}"><i class="fas fa-user fa-3x"></i></a></li>
+      <li class="appIcon"><a href="{{route('home')}}"><i class="fas fa-fire-alt fa-3x" style="color:deeppink;"></i></a></li>
 
       <!-- ここの行を追加 -->
-      <li class="messageIcon"><a href="{{route('matching')}}"><i class="fas fa-2x fa-comments"></a></i></li>
+      <li class="messageIcon"><a href="{{route('matching')}}"><i class="fas fa-3x fa-comments"></a></i></li>
 
     </ul>
   </nav>
@@ -18,8 +18,17 @@
     <ul>
         @foreach($users as $user)
         <li data-user_id="{{ $user->id }}">
-          <div class="userName">{{ $user->name }}</div>
-          <img src="/storage/images/{{ $user->img_name}}">
+          <div class="userNews d-flex justify-content-between">
+            <div>{{ $user->name }}</div>
+            <div class="ml-2">{{ $user->age }}歳</div>
+          </div>
+          <div class="home_user_img">
+            @isset($user->img_name)
+              <img src="/storage/images/{{ $user->img_name}}" alt onerror="this.onerror = null; this.src='';">
+            @else
+              <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 200px; height: 200px;">
+            @endisset
+          </div>
           <div class="like"></div>
           <div class="dislike"></div>
         </li>
@@ -39,4 +48,3 @@ var from_user_id = {{ $from_user_id }};
 </script>
 
 @endsection
-

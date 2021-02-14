@@ -17303,16 +17303,11 @@ body {
 }
 
 .usershowPage .userAction_common > a {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  display: flex;
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
   color: #c3c7d0;
   text-decoration: none;
-  box-shadow: 0px 3px 8px #aaa, inset 0px 2px 3px #fff;
   transition: color 0.5s;
 }
 
@@ -17396,7 +17391,7 @@ body {
   -webkit-backface-visibility: hidden;
 }
 
-#tinderslide ul > li .userName {
+#tinderslide ul > li .userNews {
   position: absolute;
   bottom: 5px;
   color: #000;
@@ -17582,6 +17577,15 @@ body {
   color: #dccbcb;
 }
 
+.home_user_img {
+  height: 400px;
+  position: relative;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+}
+
 .matchingPage .header {
   display: flex;
   align-items: center;
@@ -17661,6 +17665,30 @@ body {
   opacity: 0.7;
 }
 
+@media (max-width: 892px) {
+  .userInfo_selfIntroduction {
+    max-width: 400px;
+  }
+}
+
+@media (max-width: 691px) {
+  .match_userInfo_selfIntroduction {
+    max-width: 250px;
+  }
+}
+
+@media (max-width: 440px) {
+  .match_userInfo_selfIntroduction {
+    max-width: 200px;
+  }
+}
+
+@media (max-width: 420px) {
+  .match_userInfo_selfIntroduction {
+    max-width: 175px;
+  }
+}
+
 .chatPage input[type=text]:focus {
   outline: 0;
 }
@@ -17701,7 +17729,7 @@ body {
 }
 
 .chatPage .messagesArea {
-  overflow: scroll;
+  overflow-y: scroll;
   height: 72vh;
 }
 

@@ -49,7 +49,7 @@ html, body {
         transform: translate3d(0%,0,0) scale3d(1,1,1);
         backface-visibility: hidden;
         -webkit-backface-visibility: hidden;
-        .userName {
+        .userNews {
           position: absolute;
           bottom: 5px;
           color: #000;
@@ -248,4 +248,11 @@ html, body {
   }
 }
 
-    
+.home_user_img {
+  height: 400px;
+  position: relative;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+} 

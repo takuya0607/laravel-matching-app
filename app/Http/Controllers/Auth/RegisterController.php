@@ -8,13 +8,13 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-
 use App\Services\CheckExtensionServices;
-use App\Services\FileUploadServices; //追加
 
-
+use App\Services\FileUploadServices;
 
 use Intervention\Image\Facades\Image; //ここを追記
+
+
 
 class RegisterController extends Controller
 {
@@ -57,11 +57,14 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-          'name' => ['required', 'string', 'max:255'],
-          'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-          'password' => ['required', 'string', 'min:8', 'confirmed'],
-          'img_name' => ['file', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'], //この行を追加します
-          'self_introduction' => ['string', 'max:255'], //この行を追加します
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            // 写真のバリデーション
+            'img_name' => ['file', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2000'], //この行を追加します
+            // 自己紹介文のバリデーション
+            'self_introduction' => ['string', 'max:255'], //この行を追加します
+            'age' => ['required'],
         ]);
     }
 
@@ -71,10 +74,9 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
-    {
+  protected function create(array $data) {
 
- // もし'img_name'が空でなければ
+        // もし'img_name'が空でなければ
         if (!empty($data['img_name'])) {
         //引数 $data から'img_name'を取得(アップロードするファイル情報)
         // $imageFileという変数に、$data配列の'img_name'を代入する
@@ -102,7 +104,7 @@ class RegisterController extends Controller
             'self_introduction' => $data['self_introduction'],
             'sex' => $data['sex'],
             'img_name' => $fileNameToStore,
-            // 'age' => $data['age'],
+            'age' => $data['age'],
         ]);
         }else{
         // 'img_nameが空だったら'
@@ -112,8 +114,8 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'self_introduction' => $data['self_introduction'],
             'sex' => $data['sex'],
-            // 'age' => $data['age'],
+            'age' => $data['age'],
         ]);
+          }
       }
-    }
 }

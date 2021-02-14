@@ -36,7 +36,7 @@
     }
   }
   .messagesArea {
-    overflow: scroll;
+    overflow-y:scroll;
     height: 72vh;
     .message {
       &.selfMessage {
@@ -114,4 +114,3 @@
     }
   }
 }
-  
