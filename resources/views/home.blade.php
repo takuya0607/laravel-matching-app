@@ -24,7 +24,7 @@
           </div>
           <div class="home_user_img">
             @isset($user->img_name)
-              <img src="/storage/images/{{ $user->img_name}}" alt onerror="this.onerror = null; this.src='';">
+              <img src="data:image/png;base64,{{ $user->img_name}}" alt onerror="this.onerror = null; this.src='';" style="object-fit: cover; width: 430px; height: 450px;">
             @else
               <img src="/images/avatar-default.svg" class="rounded-circle" style="object-fit: cover; width: 200px; height: 200px;">
             @endisset

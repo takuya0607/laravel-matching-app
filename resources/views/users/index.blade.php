@@ -16,7 +16,7 @@
           <div class="matchingPerson">
           <div class="matchingPerson_img">
             @isset($user->img_name)
-              <img src="/storage/images/{{ $user->img_name}}" alt onerror="this.onerror = null; this.src='';">
+              <img src="data:image/png;base64,{{ $user->img_name}}" alt onerror="this.onerror = null; this.src='';">
             @else
               <img src="/images/avatar-default.svg" class="rounded-circle">
             @endisset

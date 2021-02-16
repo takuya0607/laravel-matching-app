@@ -39,15 +39,15 @@ class UserController extends Controller
 
         if(!is_null($request['img_name'])){
             $imageFile = $request['img_name'];
+            $image = base64_encode(file_get_contents($request['img_name']));
+            // $list = FileUploadServices::fileUpload($imageFile);
+            // list($extension, $fileNameToStore, $fileData) = $list;
 
-            $list = FileUploadServices::fileUpload($imageFile);
-            list($extension, $fileNameToStore, $fileData) = $list;
+            // $data_url = CheckExtensionServices::checkExtension($fileData, $extension);
+            // $image = Image::make($data_url);
+            // $image->resize(400,400)->save(storage_path() . '/app/public/images/' . $fileNameToStore );
 
-            $data_url = CheckExtensionServices::checkExtension($fileData, $extension);
-            $image = Image::make($data_url);
-            $image->resize(400,400)->save(storage_path() . '/app/public/images/' . $fileNameToStore );
-
-            $user->img_name = $fileNameToStore;
+            $user->img_name = $image;
         }
 
         $user->name = $request->name;

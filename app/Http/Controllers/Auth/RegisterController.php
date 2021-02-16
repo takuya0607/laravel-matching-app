@@ -80,21 +80,21 @@ class RegisterController extends Controller
         if (!empty($data['img_name'])) {
         //引数 $data から'img_name'を取得(アップロードするファイル情報)
         // $imageFileという変数に、$data配列の'img_name'を代入する
-        $imageFile = $data['img_name'];
-
-        $list = FileUploadServices::fileUpload($imageFile);
+          $imageFile = $data['img_name'];
+          $image = base64_encode(file_get_contents($data['img_name']));
+        // $list = FileUploadServices::fileUpload($imageFile);
 
         // list関数を使い、3つの変数に分割
-        list($extension, $fileNameToStore, $fileData) = $list;
+        // list($extension, $fileNameToStore, $fileData) = $list;
 
         //拡張子ごとに base64エンコード実施
-        $data_url = CheckExtensionServices::checkExtension($fileData, $extension);
+        // $data_url = CheckExtensionServices::checkExtension($fileData, $extension);
 
         //画像アップロード(Imageクラス makeメソッドを使用)
-        $image = Image::make($data_url);
+        // $image = Image::make($data_url);
 
         //画像を横400px, 縦400pxにリサイズし保存
-        $image->resize(400,400)->save(storage_path() . '/app/public/images/' . $fileNameToStore );
+        // $image->resize(400,400)->save(storage_path() . '/app/public/images/' . $fileNameToStore );
 
         //createメソッドでユーザー情報を作成
         return User::create([
@@ -103,7 +103,7 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'self_introduction' => $data['self_introduction'],
             'sex' => $data['sex'],
-            'img_name' => $fileNameToStore,
+            'img_name' => $image,
             'age' => $data['age'],
         ]);
         }else{
